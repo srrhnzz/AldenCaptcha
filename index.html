@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="style.css"/>
 <script src="main.js"></script>
 <body>
-  <div class="parent">
+    <img src="reCAPTCHA.png" alt="Captcha" height="100px" width="400px" onclick="showRecaptcha()" id="checkbox">
+  <div class="parent" id="recaptcha" style="display: none">
 <div class="div1" id="select1" onclick="toggleSize('select1')">
   <div class="check"></div>
 </div>
@@ -71,8 +72,4 @@
 </div>
 </body>
 
-</html>
-
-  <!--<img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*HMLSxwb2bQuzTRuA51szOg.png" alt="Captcha" height="100px" width="400px" onclick='document.getElementById("recaptcha").style.display = "block";
-     document.getElementById("recaptcha").src = "captcha.html";'>
-   <iframe src="" frameborder="0" id="recaptcha" style="position: absolute; top: 50px; left: 50px; z-index: 10; height: 750px; width: 450px; display: none"></iframe>
+</html> 
