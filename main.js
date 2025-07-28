@@ -1,10 +1,3 @@
-    function gago() {
-  console.log('fuck')
-  const sound = new Howl({
-  src: ['tanginamo.mp3'],
-  autoplay: true,
-}); }
-
 let sizeStates = {};
 
 const correctPattern = {
@@ -15,28 +8,31 @@ const correctPattern = {
 };
 
 for (const divId in correctPattern) {
-  sizeStates[divId] = false; // Initialize with false
+  sizeStates[divId] = false;
 }
 
 function toggleSize(elementId) {
   const myDiv = document.getElementById(elementId);
   const checkDiv = myDiv.children[0];
+  const gago = document.getElementsByClassName('bobo')[0];
   sizeStates[elementId] = !sizeStates[elementId];
-  console.log(`Toggled ${elementId}: sizeStates=${sizeStates[elementId]}`);
+  //console.log(`Toggled ${elementId}: sizeStates=${sizeStates[elementId]}`);
   if (sizeStates[elementId]) {
     myDiv.style.transform = "scale(0.8)";
     checkDiv.style.display = 'block';
+    gago.style.display = 'none';  
   } else {
     myDiv.style.transform = "scale(1)";
     checkDiv.style.display = 'none';
+    gago.style.display = 'none';  
   }
 }
 
 function verifyPattern() {
   for (const divId in correctPattern) {
-    console.log(`Comparing ${divId}: sizeStates=${sizeStates[divId]}, correctPattern=${correctPattern[divId]}`);
+    //console.log(`Comparing ${divId}: sizeStates=${sizeStates[divId]}, correctPattern=${correctPattern[divId]}`);
     if (sizeStates[divId] !== correctPattern[divId]) {
-      console.log(`Mismatch at ${divId}`);
+      //console.log(`Mismatch at ${divId}`);
       return false;
     }
   }
@@ -44,12 +40,26 @@ function verifyPattern() {
 }
 
 function checkResult() {
-  const gago = document.getElementsByClassName('bobo')[0]; 
+  const bobo = document.getElementsByClassName('bobo')[0];
+  const checkbox = document.getElementById('checkbox');
+  const gago = document.getElementById("recaptcha");
   if (verifyPattern()) {
-    window.location.href = 'kupal.html';
-    console.log("Access Accepted!");
+    checkbox.src = 'checked.png';
+    gago.style.display = "none";
   } else {
-    console.log("Access Denied!");
-    gago.style.display = 'block';  
+    //console.log("Access Denied!");
+    bobo.style.display = 'block';
   } 
 }
+
+  function showRecaptcha() {
+      const gago = document.getElementById("recaptcha");
+      gago.style.display = "";
+    }
+    document.addEventListener("click", function(event) {
+      var recaptcha = document.getElementById("recaptcha");
+      var image = document.querySelector("img[alt='Captcha']");
+      if (recaptcha && event.target !== recaptcha && !recaptcha.contains(event.target) && event.target !== image) {
+        recaptcha.style.display = "none";
+      }
+    });
